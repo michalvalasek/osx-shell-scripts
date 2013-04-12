@@ -6,12 +6,17 @@ BACKUP="$ORIG/.iSightBackup"
 
 echo "This action requires admin rights"
 
+if [ ! -d $BACKUP ];
+then
+    sudo mkdir $BACKUP
+fi
+
 if [ -d $ORIG/$COMPONENT ];
 then
-	sudo mv $ORIG/$COMPONENT $BACKUP
+	sudo mv $ORIG/$COMPONENT $BACKUP/$COMPONENT
 	echo "Turning iSight camera OFF"
 else
-	sudo mv $BACKUP/$COMPONENT $ORIG
+	sudo mv $BACKUP/$COMPONENT $ORIG/$COMPONENT
 	echo "Turning iSight camera ON"
 fi
 
